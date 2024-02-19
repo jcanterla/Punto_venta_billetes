@@ -25,7 +25,12 @@ public class Punto_venta_billetes {
                         }
                         break;
                     case 2:
-                        Genreacionhorallegada();
+                        Scanner horateclado = new Scanner(System.in);
+                        System.out.print("Hora de despegue (hh:mm): ");
+                        String hora = horateclado.nextLine();
+                        System.out.print("Duración (en minutos): ");
+                        int minutos = horateclado.nextInt();
+                        Genreacionhorallegada(hora,minutos);
 
                         break;
                     case 3:
@@ -55,14 +60,9 @@ public class Punto_venta_billetes {
 
         }
 
-        public static void Genreacionhorallegada(){
-            Scanner horateclado = new Scanner(System.in);
-            System.out.print("Hora de despegue (hh:mm): ");
-            String hora = horateclado.nextLine();
-            DateTimeFormatter formatohora = DateTimeFormatter.ofPattern("HH:MM");
+        public static void Genreacionhorallegada(String hora,int minutos){
+            DateTimeFormatter formatohora = DateTimeFormatter.ofPattern("HH:mm");
             LocalTime horaconformato = LocalTime.parse(hora,formatohora);
-            System.out.print("Duración (en minutos): ");
-            int minutos = horateclado.nextInt();
             LocalTime duracion = horaconformato.plusMinutes(minutos);
             System.out.println(duracion);
 
