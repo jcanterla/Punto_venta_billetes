@@ -15,6 +15,7 @@ public class PilotoAPV extends ApoyoPuntoVenta {
                 System.out.println("2.-Generación de la hora de llegada");
                 System.out.println("3.-Generación automatizada de tabla de meses");
                 System.out.println("4.-Obtención de los días correspondientes de un mes");
+                System.out.println("5.-Recopilación información de un vuelo");
                 System.out.print("\n Ingrese una opción: ");
 
 
