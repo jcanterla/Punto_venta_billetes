@@ -649,31 +649,32 @@ public class ApoyoPuntoVenta {
         String origen = scanner.nextLine();
         System.out.print("Destino: ");
         String destino = scanner.nextLine();
-        String lolito = IATAdic.get(origen);
-        String lolito2 = IATAdic.get(destino);
-        LocalTime Thegrefg = null;
-        LocalTime Thegrefg2 = null;
-        LocalTime Thegrefg3 = null;
-        LocalTime Thegrefg4 = null;
-        if (agrupacion.containsKey(lolito)){
-            for (List<String> vuelo : agrupacion.get(lolito)){
-                int numero = vuelo.indexOf(lolito2);
+        String origen_dicc = IATAdic.get(origen);
+        String destino_dicc = IATAdic.get(destino);
+        LocalTime salida1 = null;
+        LocalTime llegada1 = null;
+        LocalTime salida2 = null;
+        LocalTime llegada2  = null;
+        if (agrupacion.containsKey(origen_dicc)){
+            for (List<String> vuelo : agrupacion.get(origen_dicc)){
+                int numero = vuelo.indexOf(destino_dicc);
                 for (String vuelo2 : vuelo){
                     for (int i = 0; i == numero; i++){
-                        Thegrefg = LocalTime.parse(vuelo.get(1));
-                        int ibai = Integer.parseInt(vuelo.get(3));
-                        Thegrefg2 = Thegrefg.plusMinutes(ibai);
-                        Thegrefg3 = LocalTime.parse(vuelo.get(2));
-                        int ibai2 = Integer.parseInt(vuelo.get(3));
-                        Thegrefg4 = Thegrefg3.plusMinutes(ibai2);
+                        int duracion = Integer.parseInt(vuelo.get(3));
+                        //vuelo 1
+                        salida1 = LocalTime.parse(vuelo.get(1));
+                        llegada1 = salida1.plusMinutes(duracion);
+                        //vuelo 2
+                        salida2 = LocalTime.parse(vuelo.get(2));
+                        llegada2 = salida2.plusMinutes(duracion);
 
                     }
                 }
 
             }
         }
-        System.out.println(origen + "(" + lolito + ") --> " + destino + "(" + lolito2 + ") " + Thegrefg + " " + Thegrefg2 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
-        System.out.println(origen + "(" + lolito + ") --> " + destino + "(" + lolito2 + ") " + Thegrefg3 + " " + Thegrefg4 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
+        System.out.println(origen + "(" + origen_dicc + ") --> " + destino + "(" + destino_dicc + ") " + salida1 + " " + llegada1 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
+        System.out.println(origen + "(" + origen_dicc + ") --> " + destino + "(" + destino_dicc + ") " + salida2 + " " + llegada2 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
     }
 }
 
