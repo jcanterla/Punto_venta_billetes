@@ -23,27 +23,37 @@ public class ApoyoPuntoVenta {
 
     }
 
-    public static LocalTime Opcion2(){
-
-        System.out.print("\nHora de despegue (hh:mm): ");
-        String hora = scanner.nextLine();
-        DateTimeFormatter formatohora = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime horaconformato = LocalTime.parse(hora,formatohora);
-        System.out.print("Duración (en minutos): ");
-        int minutos = scanner.nextInt();
-
-        return horaconformato.plusMinutes(minutos);
-
+    public static LocalTime Opcion2() {
+        try {
+            System.out.print("\nHora de despegue (hh:mm): ");
+            String hora = scanner.nextLine();
+            DateTimeFormatter formatohora = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime horaconformato = LocalTime.parse(hora, formatohora);
+            System.out.print("Duración (en minutos): ");
+            int minutos = scanner.nextInt();
+            return horaconformato.plusMinutes(minutos);
+        } catch (DateTimeParseException exc) {;
+            System.out.println("\n\t\t\u001B[0;1mHora no valida\033[0m");
+            return null;
+        }
     }
 
     public static String Opcion3(){
         //Introducir mes por teclado
-        int mes;
+        int mes = 0;
         do {
-            System.out.print("\nIntroduzca el mes en formato numérico: ");
-            mes = scanner.nextInt();
-            if (mes < 1 || mes > 12) {
-                System.out.println("Mes incorrecto. Debe estar entre 1 y 12");
+            
+            try {
+                System.out.print("\nIntroduzca el mes en formato numérico: ");
+                mes = scanner.nextInt();
+                if (mes < 1 || mes > 12) {
+                    System.out.println("Mes incorrecto. Debe estar entre 1 y 12");
+                }
+            }catch (Exception e){
+                System.out.println("\t\tIntroduzca un numero entero");
+                scanner.nextLine();
+                continue;
+
             }
 
         }while (mes < 1 || mes > 12) ;
@@ -564,9 +574,13 @@ public class ApoyoPuntoVenta {
                 }
 
             }
+        } else {
+            System.out.println("No hay vuelos disponibles");
+            return;
         }
         System.out.println(origen + "(" + origen_dicc + ") --> " + destino + "(" + destino_dicc + ") " + salida1 + " " + llegada1 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
         System.out.println(origen + "(" + origen_dicc + ") --> " + destino + "(" + destino_dicc + ") " + salida2 + " " + llegada2 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
     }
+
 }
 

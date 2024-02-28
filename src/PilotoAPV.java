@@ -8,6 +8,7 @@ public class PilotoAPV extends ApoyoPuntoVenta {
         Scanner seleccion = new Scanner(System.in);
         boolean salir = false;
 
+
         while (!salir) {
             System.out.println("\n\t\t\t\t\033[0;1mPROGRAMA BILLETE AVIÓN\033[0m");
             System.out.println("\t\t\t\t======================\n");
@@ -16,6 +17,7 @@ public class PilotoAPV extends ApoyoPuntoVenta {
             System.out.println("3.-Generación automatizada de tabla de meses");
             System.out.println("4.-Obtención de los días correspondientes de un mes");
             System.out.println("5.-Recopilación información de un vuelo");
+            System.out.println("6.-Salir");
             System.out.print("\n Ingrese una opción: ");
 
 
@@ -40,15 +42,19 @@ public class PilotoAPV extends ApoyoPuntoVenta {
                         System.out.println("El resultado solicitado es: " + Opcion4());
                         break;
                     case 5:
+
                         Opcion5();
                         break;
                     case 6:
                         salir = true;
                         break;
                 }
-            } catch (InputMismatchException exc) {
+            }
+            catch (InputMismatchException exc) {
                 System.out.println("\n\t\t\u001B[0;1mOpción no valida o no disponible\033[0m");
+                seleccion.next();
             }
         }
     }
+
 }
