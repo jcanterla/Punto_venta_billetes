@@ -114,7 +114,7 @@ public class ApoyoPuntoVenta {
 
         }
 
-        return 0; // Arreglar o mirar
+        return 0;
 
     }
     public String preciorandom() {
