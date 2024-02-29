@@ -82,7 +82,6 @@ public class ApoyoPuntoVenta {
 
     public static int Opcion4() {
         HashMap<String, Integer> meses = new HashMap<>();
-        List<Integer> aniosBisiestos = new ArrayList<>();
 
         // Añadimos al HashMap como elementos clave-valor los meses junto el número de días que tienen
         meses.put("Enero", 31);
