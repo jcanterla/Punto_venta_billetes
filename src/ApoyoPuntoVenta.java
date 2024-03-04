@@ -124,7 +124,7 @@ public class ApoyoPuntoVenta {
         String precioFormateado = String.format("%.2f", numero);
         return precioFormateado;
     }
-    public static void Opcion5(){
+    public static int Opcion5(String origen, String destino){
 
         HashMap<String, String> IATAdic = new HashMap<>();
 
@@ -533,10 +533,6 @@ public class ApoyoPuntoVenta {
 
 
         ApoyoPuntoVenta apoyoPuntoVenta = new ApoyoPuntoVenta();
-        System.out.print("\nOrigen: ");
-        String origen = scanner.nextLine();
-        System.out.print("Destino: ");
-        String destino = scanner.nextLine();
         String origen_dicc = IATAdic.get(origen);
         String destino_dicc = IATAdic.get(destino);
         LocalTime salida1 = null;
@@ -562,10 +558,11 @@ public class ApoyoPuntoVenta {
             }
         } else {
             System.out.println("No hay vuelos disponibles");
-            return;
+            return 0;
         }
         System.out.println(origen + "(" + origen_dicc + ") --> " + destino + "(" + destino_dicc + ") " + salida1 + " " + llegada1 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
         System.out.println(origen + "(" + origen_dicc + ") --> " + destino + "(" + destino_dicc + ") " + salida2 + " " + llegada2 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
+        return 0;
     }
 
 }

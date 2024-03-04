@@ -2,7 +2,9 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class interfaz_primera_parte {
 
@@ -10,7 +12,7 @@ public class interfaz_primera_parte {
             // Crear el marco principal
             JFrame marco = new JFrame("Air Carmela");
             marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            marco.setSize(750, 250);
+
 
 
             // Paneles para organizar los componentes
@@ -23,6 +25,9 @@ public class interfaz_primera_parte {
             JPanel panel7 = new JPanel();
             JPanel panel8 = new JPanel();
             JPanel panel9 = new JPanel();
+            JPanel panel10 = new JPanel();
+            JPanel panel11 = new JPanel();
+            JPanel panel12 = new JPanel();
 
             // Configurar paneles
             panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
@@ -219,6 +224,7 @@ public class interfaz_primera_parte {
                 }
             });
 
+            final boolean[] mostrarTitulo2 = {true};
 
             // Funcionalidad del botón de búsqueda
             buscar.addActionListener(e -> {
@@ -252,7 +258,50 @@ public class interfaz_primera_parte {
                 // Opciones para mostrar el cuadro de diálogo con el mensaje y los botones
 
                 if (opcionSeleccionada == 0) {
-                    //AQUI  LA PARTE DE JAVI
+
+                    // Segunda Parte
+
+                    if (mostrarTitulo2[0]) {
+                        JLabel titulo2 = new JLabel("LOS VUELOS DISPONIBLES SON: ");
+                        titulo2.setFont(new Font("Arial", Font.BOLD, 15));
+                        panel10.add(titulo2, BorderLayout.NORTH);
+                        mostrarTitulo2[0] = false;
+                    }
+
+                    panel11.setLayout(new BoxLayout(panel11, BoxLayout.Y_AXIS));
+                    panel11.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Ida", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+
+                    panel12.setLayout(new BoxLayout(panel12, BoxLayout.Y_AXIS));
+                    panel12.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Vuelta", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+
+                    marco.setLocationRelativeTo(null);
+                    marco.pack();
+                    panel10.add(panel11, BorderLayout.EAST);
+                    panel10.add(panel12, BorderLayout.WEST);
+                    marco.add(panel10, BorderLayout.SOUTH);
+
+                    List<Integer> Prueba = new ArrayList<>();
+                    Prueba.add(ApoyoPuntoVenta.Opcion5(origen, destino));
+
+                    ButtonGroup grupoBotones;
+                    grupoBotones = new ButtonGroup();
+
+                    for (Integer elemento : Prueba) {
+                        JRadioButton radioButton = new JRadioButton(String.valueOf(elemento));
+                        radioButton.setActionCommand(String.valueOf(elemento));
+                        grupoBotones.add(radioButton);
+                        panel11.add(radioButton);
+                    }
+
+                    System.out.println(Prueba);
+
+
+
+
+
+
+
+
                 } else if (opcionSeleccionada == 1) {
                     marco.dispose();
                     crearInterfaz();
@@ -286,6 +335,7 @@ public class interfaz_primera_parte {
             marco.setResizable(false);
             marco.pack();
             marco.setVisible(true);
+            marco.setLocationRelativeTo(null);
         }
     }
 
