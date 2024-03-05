@@ -108,12 +108,18 @@ public class interfaz_tercer_bloque {
         JButton boton4 = new JButton(icono1);
         JButton boton5 = new JButton(icono2);
         JPanel panel5_2 = new JPanel();
-        panel5_2.setLayout(new FlowLayout());
+        panel5_2.setLayout(new BorderLayout());
         panel5_2.add(boton4, BorderLayout.NORTH);
         panel5_2.add(boton5, BorderLayout.CENTER);
         panel5.add(panel5_2, BorderLayout.EAST);
 
         // Panel 6
+        JLabel imagen = new JLabel();
+        ImageIcon icono3 = new ImageIcon("src/ico_bill_av_ida.png");
+        ImageIcon icono4 = new ImageIcon("src/ico_bill_av_iv.png");
+        imagen.setIcon(icono3);
+        panel6.add(imagen);
+
 
         // Panel 7
         panel7.setLayout(new BorderLayout());
