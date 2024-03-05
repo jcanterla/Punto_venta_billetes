@@ -43,7 +43,7 @@ public class PilotoAPV extends ApoyoPuntoVenta {
                         break;
                     case 5:
 
-                        Opcion5();
+                        //Opcion5();
                         break;
                     case 6:
                         salir = true;
