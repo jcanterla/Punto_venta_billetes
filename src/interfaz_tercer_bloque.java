@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
@@ -12,6 +13,7 @@ public class interfaz_tercer_bloque {
 
 
         // Crear paneles
+        JPanel panelTercero = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
@@ -19,6 +21,10 @@ public class interfaz_tercer_bloque {
         JPanel panel5 = new JPanel();
         JPanel panel6 = new JPanel();
         JPanel panel7 = new JPanel();
+
+        // PanelTercero
+        panelTercero.setLayout(new BorderLayout());
+        panelTercero.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
         // Panel 2
         // Agregar JSlider al panel 2
@@ -111,6 +117,7 @@ public class interfaz_tercer_bloque {
         panel5_2.setLayout(new BorderLayout());
         panel5_2.add(boton4, BorderLayout.NORTH);
         panel5_2.add(boton5, BorderLayout.CENTER);
+        panel5_2.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         panel5.add(panel5_2, BorderLayout.EAST);
 
         // Panel 6
@@ -132,18 +139,19 @@ public class interfaz_tercer_bloque {
         panel3.setBorder(new TitledBorder(new LineBorder(Color.blue),"Posición", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel4.setBorder(new TitledBorder(new LineBorder(Color.blue),"Extras", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel5.setBorder(new TitledBorder(new LineBorder(Color.blue),"Importes", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
-        panel6.setBorder(new TitledBorder(new LineBorder(Color.blue),"Asientos", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+        panel6.setBorder(new TitledBorder(new LineBorder(Color.blue),"Billete", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel1.add(panel2);
         panel1.add(panel3);
         panel1.add(panel4);
 
 
         // Agregar los paneles al marco principal con un BorderLayout
-        marco.add(panel1, BorderLayout.WEST);
-        marco.add(panel7, BorderLayout.CENTER);
+        panelTercero.add(panel1, BorderLayout.WEST);
+        panelTercero.add(panel7, BorderLayout.CENTER);
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Visiblidad y tamaño del marco principal
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+        marco.add(panelTercero);
         marco.pack();
         marco.setVisible(true);
     }
