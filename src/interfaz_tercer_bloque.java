@@ -16,10 +16,12 @@ public class interfaz_tercer_bloque {
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
         JPanel panel4 = new JPanel();
+        JPanel panel5 = new JPanel();
 
         // Panel 2
         // Agregar JSlider al panel 2
-        JLabel etiqueta = new JLabel();
+        JLabel etiqueta = new JLabel("Filas: ");
+        etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
         JSlider slider = new JSlider(JSlider.HORIZONTAL, 1, 26, 12);
         // Pintar y espaciar la info del slider
         slider.setPaintTrack(true);
@@ -28,6 +30,11 @@ public class interfaz_tercer_bloque {
         slider.setMajorTickSpacing(5);
         slider.setMinorTickSpacing(2);
         slider.setValue(1);
+        // Colocar texto inicial con el valor del JSlider
+        etiqueta.setText("Filas: " + slider.getValue());
+        panel2.setLayout(new BorderLayout());
+        panel2.add(etiqueta, BorderLayout.NORTH);
+        panel2.add(slider, BorderLayout.CENTER);
         // Movimiento del slider
         slider.addChangeListener(new ChangeListener() {
             @Override
@@ -35,10 +42,7 @@ public class interfaz_tercer_bloque {
                 etiqueta.setText("Filas: " + slider.getValue());
             }
         });
-        panel2.add(etiqueta);
-        panel2.add(slider);
-        // Colocar texto inicial con el valor del JSlider
-        etiqueta.setText("Filas: " + slider.getValue());
+
 
         // Panel 3
         // Agregar JRadioButton al panel 3
@@ -66,23 +70,27 @@ public class interfaz_tercer_bloque {
         panel4.add(check1);
         panel4.add(check2);
 
+        // Panel 5
+
+
         // Configurar borde y título para el panel 1
         panel1.setBorder(new TitledBorder(new LineBorder(Color.blue),"Detalles", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel2.setBorder(new TitledBorder(new LineBorder(Color.blue),"Asiento", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel3.setBorder(new TitledBorder(new LineBorder(Color.blue),"Posición", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel4.setBorder(new TitledBorder(new LineBorder(Color.blue),"Extras", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+        panel5.setBorder(new TitledBorder(new LineBorder(Color.blue),"Importes", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel1.add(panel2);
         panel1.add(panel3);
         panel1.add(panel4);
 
-        // Visiblidad y tamaño del marco principal
-        marco.setVisible(true);
-        marco.setSize(800, 400);
-        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
 
         // Agregar los paneles al marco principal con un BorderLayout
         marco.add(panel1, BorderLayout.WEST);
+        marco.add(panel5, BorderLayout.CENTER);
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        // Visiblidad y tamaño del marco principal
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+        marco.pack();
+        marco.setVisible(true);
     }
 }
