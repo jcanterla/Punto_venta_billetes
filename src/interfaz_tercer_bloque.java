@@ -3,13 +3,17 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.text.DecimalFormat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class interfaz_tercer_bloque {
     public static void main(String[] args) {
         // Crear marco principal
         JFrame marco = new JFrame("Air Camela");
-
 
         // Crear paneles
         JPanel panel1 = new JPanel();
@@ -24,27 +28,18 @@ public class interfaz_tercer_bloque {
         // Agregar JSlider al panel 2
         JLabel etiqueta = new JLabel("Filas: ");
         etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
-        JSlider slider = new JSlider(JSlider.HORIZONTAL, 1, 26, 12);
+        JSlider slider = new JSlider(JSlider.HORIZONTAL, 1, 26, 1);
         // Pintar y espaciar la info del slider
         slider.setPaintTrack(true);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setMajorTickSpacing(5);
         slider.setMinorTickSpacing(2);
-        slider.setValue(1);
-        // Colocar texto inicial con el valor del JSlider
+        slider.setValue(1); // Valor inicial ajustado a 1
         etiqueta.setText("Filas: " + slider.getValue());
         panel2.setLayout(new BorderLayout());
         panel2.add(etiqueta, BorderLayout.NORTH);
         panel2.add(slider, BorderLayout.CENTER);
-        // Movimiento del slider
-        slider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                etiqueta.setText("Filas: " + slider.getValue());
-            }
-        });
-
 
         // Panel 3
         // Agregar JRadioButton al panel 3
@@ -66,7 +61,7 @@ public class interfaz_tercer_bloque {
         // Agregar JCheckBox al panel 4
         JCheckBox check1 = new JCheckBox("Embarque Prior.");
         JCheckBox check2 = new JCheckBox("Equipaje");
-        check1.setSelected(true);
+
         check2.setSelected(true);
         // Agregar botones al panel 4
         panel4.add(check1);
@@ -76,16 +71,20 @@ public class interfaz_tercer_bloque {
         JLabel etiqueta1 = new JLabel("Asiento: ");
         JLabel etiqueta2 = new JLabel("Embarque: ");
         JLabel etiqueta3 = new JLabel("Equipaje: ");
-        JTextField campo1 = new JTextField(5);
+        JTextField campo1 = new JTextField(7); // Aumentamos el tamaño para acomodar el formato
         campo1.setFont(new Font("Arial", Font.BOLD, 12));
-        JTextField campo2 = new JTextField(5);
+        campo1.setText("12.00€"); // Valor inicial ajustado a 12.00€
+        JTextField campo2 = new JTextField(7); // Aumentamos el tamaño para acomodar el formato
         campo2.setFont(new Font("Arial", Font.BOLD, 12));
-        JTextField campo3 = new JTextField(5);
+        campo2.setText("0.00€"); // Valor inicial ajustado a 0.00€
+        JTextField campo3 = new JTextField(7); // Aumentamos el tamaño para acomodar el formato
         campo3.setFont(new Font("Arial", Font.BOLD, 12));
+        campo3.setText("10.00€"); // Valor inicial ajustado a 10.00€
         JLabel etiqueta4 = new JLabel("Precio Final: ");
         etiqueta4.setFont(new Font("Arial", Font.BOLD, 15));
-        JTextField campo4 = new JTextField(5);
+        JTextField campo4 = new JTextField(7);
         campo4.setFont(new Font("Arial", Font.BOLD, 15));
+        campo4.setEditable(false); // Hacemos el campo de texto no editable
         panel5.setLayout(new BorderLayout());
         JPanel panel5_1 = new JPanel();
         JPanel panel5_1_1 = new JPanel();
@@ -113,6 +112,68 @@ public class interfaz_tercer_bloque {
         panel5_2.add(boton5, BorderLayout.CENTER);
         panel5.add(panel5_2, BorderLayout.EAST);
 
+        // Movimiento del slider
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                etiqueta.setText("Filas: " + slider.getValue());
+                int valorSlider = slider.getValue();
+                double precio = calcularPrecio(valorSlider);
+                DecimalFormat formato = new DecimalFormat("#0.00€"); // Formato con dos decimales y símbolo de euro
+                campo1.setText(formato.format(precio));
+                calcularPrecioFinal(campo1, campo2, campo3, campo4); // Calculamos la suma final cada vez que cambia el slider
+            }
+        });
+
+
+
+        check1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (check1.isSelected()) {
+                    campo2.setText("10.00€");
+                } else {
+                    campo2.setText("0.00€"); // Cambio realizado para que muestre 0.00€ cuando no esté seleccionado
+                }
+                calcularPrecioFinal(campo1, campo2, campo3, campo4);
+            }
+        });
+        check2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (check2.isSelected()) {
+                    campo3.setText("10.00€");
+                } else {
+                    campo3.setText("0.00€"); // Cambio realizado para que muestre 0.00€ cuando no esté seleccionado
+                }
+                calcularPrecioFinal(campo1, campo2, campo3, campo4);
+            }
+        });
+
+        // Escuchador de cambios en el campo1
+        campo1.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizarPrecioFinal();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actualizarPrecioFinal();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actualizarPrecioFinal();
+            }
+
+            private void actualizarPrecioFinal() {
+                calcularPrecioFinal(campo1, campo2, campo3, campo4);
+            }
+        });
+
+
+
         // Panel 6
 
         // Panel 7
@@ -131,7 +192,6 @@ public class interfaz_tercer_bloque {
         panel1.add(panel3);
         panel1.add(panel4);
 
-
         // Agregar los paneles al marco principal con un BorderLayout
         marco.add(panel1, BorderLayout.WEST);
         marco.add(panel7, BorderLayout.CENTER);
@@ -140,5 +200,37 @@ public class interfaz_tercer_bloque {
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
         marco.pack();
         marco.setVisible(true);
+        marco.setResizable(false);
+        marco.setLocationRelativeTo(null);
+    }
+
+    private static double calcularPrecio(int filas) {
+        if (filas >= 1 && filas <= 6) {
+            return 12.0;
+        } else if (filas >= 7 && filas <= 19) {
+            return 8.0;
+        } else if (filas >= 20 && filas <= 26) {
+            return 4.0;
+        } else {
+            return 0.0; // Valor predeterminado en caso de que esté fuera de rango
+        }
+    }
+
+    private static void calcularPrecioFinal(JTextField campo1, JTextField campo2, JTextField campo3, JTextField campo4) {
+        double precioAsiento = extraerPrecio(campo1);
+        double precioEmbarque = extraerPrecio(campo2);
+        double precioEquipaje = extraerPrecio(campo3);
+        double precioFinal = precioAsiento + precioEmbarque + precioEquipaje;
+        DecimalFormat formato = new DecimalFormat("#0.00€"); // Formato con dos decimales y símbolo de euro
+        campo4.setText(formato.format(precioFinal));
+    }
+
+    private static double extraerPrecio(JTextField campo) {
+        String texto = campo.getText().replace("€", "").trim(); // Eliminar el símbolo de euro y espacios
+        try {
+            return Double.parseDouble(texto);
+        } catch (NumberFormatException e) {
+            return 0.0; // Devolver 0.0 si no se puede convertir a double
+        }
     }
 }

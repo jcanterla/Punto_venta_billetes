@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class interfaz_primera_parte {
 
@@ -285,6 +286,9 @@ public class interfaz_primera_parte {
                         Vuelos3.add(ApoyoPuntoVenta.Opcion5(destino, origen));
                         Vuelos4.add(ApoyoPuntoVenta.Opcion6(destino, origen));
 
+                        String precio = preciorandom();
+                        String Prueba = ApoyoPuntoVenta.Opcion5(origen, destino) + precio + "€";
+
                         ButtonGroup grupoBotones = new ButtonGroup();
 
                         JRadioButton radioButton = new JRadioButton(String.valueOf(Vuelos.getFirst()));
@@ -402,5 +406,12 @@ public class interfaz_primera_parte {
             marco.setVisible(true);
             marco.setLocationRelativeTo(null);
         }
+    public String preciorandom() {
+        Random rand = new Random();
+        double numero = 35.00 + (60.00 - 35.00) * rand.nextDouble();
+        return String.format("%.2f", numero);
+    }
+
+
     }
 

@@ -562,7 +562,7 @@ public class ApoyoPuntoVenta {
 
         }
 
-        String nose = ( origen_dicc + "-" + destino_dicc + " " + salida1 + " " + llegada1 + " " + apoyoPuntoVenta.preciorandom() + "€");
+        String nose = ( origen_dicc + "-" + destino_dicc + " " + salida1 + " " + llegada1 + " ");
         String nose2 = (origen_dicc + "-" + destino_dicc + " " + salida2 + " " + llegada2 + " " + apoyoPuntoVenta.preciorandom() + "€");
 
         return nose;
