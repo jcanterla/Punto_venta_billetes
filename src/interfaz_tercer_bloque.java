@@ -17,6 +17,8 @@ public class interfaz_tercer_bloque {
         JPanel panel3 = new JPanel();
         JPanel panel4 = new JPanel();
         JPanel panel5 = new JPanel();
+        JPanel panel6 = new JPanel();
+        JPanel panel7 = new JPanel();
 
         // Panel 2
         // Agregar JSlider al panel 2
@@ -71,7 +73,52 @@ public class interfaz_tercer_bloque {
         panel4.add(check2);
 
         // Panel 5
+        JLabel etiqueta1 = new JLabel("Asiento: ");
+        JLabel etiqueta2 = new JLabel("Embarque: ");
+        JLabel etiqueta3 = new JLabel("Equipaje: ");
+        JTextField campo1 = new JTextField(5);
+        campo1.setFont(new Font("Arial", Font.BOLD, 12));
+        JTextField campo2 = new JTextField(5);
+        campo2.setFont(new Font("Arial", Font.BOLD, 12));
+        JTextField campo3 = new JTextField(5);
+        campo3.setFont(new Font("Arial", Font.BOLD, 12));
+        JLabel etiqueta4 = new JLabel("Precio Final: ");
+        etiqueta4.setFont(new Font("Arial", Font.BOLD, 15));
+        JTextField campo4 = new JTextField(5);
+        campo4.setFont(new Font("Arial", Font.BOLD, 15));
+        panel5.setLayout(new BorderLayout());
+        JPanel panel5_1 = new JPanel();
+        JPanel panel5_1_1 = new JPanel();
+        panel5_1.setLayout(new BorderLayout());
+        panel5_1_1.add(etiqueta1);
+        panel5_1_1.add(campo1);
+        panel5_1_1.add(etiqueta2);
+        panel5_1_1.add(campo2);
+        panel5_1_1.add(etiqueta3);
+        panel5_1_1.add(campo3);
+        panel5_1.add(panel5_1_1, BorderLayout.NORTH);
+        JPanel panel5_1_2 = new JPanel();
+        panel5_1_2.add(etiqueta4);
+        panel5_1_2.add(campo4);
+        panel5_1.add(panel5_1_2, BorderLayout.CENTER);
+        panel5.add(panel5_1, BorderLayout.CENTER);
+        // Crear botones al panel 5
+        Icon icono1 = new ImageIcon("src/aceptar.png");
+        Icon icono2 = new ImageIcon("src/rechazar.png");
+        JButton boton4 = new JButton(icono1);
+        JButton boton5 = new JButton(icono2);
+        JPanel panel5_2 = new JPanel();
+        panel5_2.setLayout(new FlowLayout());
+        panel5_2.add(boton4, BorderLayout.NORTH);
+        panel5_2.add(boton5, BorderLayout.CENTER);
+        panel5.add(panel5_2, BorderLayout.EAST);
 
+        // Panel 6
+
+        // Panel 7
+        panel7.setLayout(new BorderLayout());
+        panel7.add(panel5, BorderLayout.NORTH);
+        panel7.add(panel6, BorderLayout.CENTER);
 
         // Configurar borde y título para el panel 1
         panel1.setBorder(new TitledBorder(new LineBorder(Color.blue),"Detalles", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
@@ -79,6 +126,7 @@ public class interfaz_tercer_bloque {
         panel3.setBorder(new TitledBorder(new LineBorder(Color.blue),"Posición", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel4.setBorder(new TitledBorder(new LineBorder(Color.blue),"Extras", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel5.setBorder(new TitledBorder(new LineBorder(Color.blue),"Importes", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+        panel6.setBorder(new TitledBorder(new LineBorder(Color.blue),"Asientos", TitledBorder.LEFT, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
         panel1.add(panel2);
         panel1.add(panel3);
         panel1.add(panel4);
@@ -86,7 +134,7 @@ public class interfaz_tercer_bloque {
 
         // Agregar los paneles al marco principal con un BorderLayout
         marco.add(panel1, BorderLayout.WEST);
-        marco.add(panel5, BorderLayout.CENTER);
+        marco.add(panel7, BorderLayout.CENTER);
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Visiblidad y tamaño del marco principal
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
