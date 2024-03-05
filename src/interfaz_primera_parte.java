@@ -199,6 +199,7 @@ public class interfaz_primera_parte {
                 spinnerMesVuelta.setEnabled(false);
                 spinnerAnioVuelta.setEnabled(false);
             });
+
             radio2.addActionListener(e -> {
                 spinnerDiaVuelta.setEnabled(true);
                 spinnerMesVuelta.setEnabled(true);
@@ -259,43 +260,107 @@ public class interfaz_primera_parte {
 
                 if (opcionSeleccionada == 0) {
 
-                    // Segunda Parte
+                    boolean opcionSeleccionada1 = radio2.isSelected();
 
-                    if (mostrarTitulo2[0]) {
+                    if (opcionSeleccionada1) {
+                        // Segunda Parte
+
+                        panel10.removeAll();
+                        panel11.removeAll();
+                        panel12.removeAll();
+
+
                         JLabel titulo2 = new JLabel("LOS VUELOS DISPONIBLES SON: ");
                         titulo2.setFont(new Font("Arial", Font.BOLD, 15));
                         panel10.add(titulo2, BorderLayout.NORTH);
-                        mostrarTitulo2[0] = false;
-                    }
 
-                    panel11.setLayout(new BoxLayout(panel11, BoxLayout.Y_AXIS));
-                    panel11.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Ida", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
 
-                    panel12.setLayout(new BoxLayout(panel12, BoxLayout.Y_AXIS));
-                    panel12.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Vuelta", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+                        List<String> Vuelos = new ArrayList<>();
+                        List<String> Vuelos2 = new ArrayList<>();
+                        List<String> Vuelos3 = new ArrayList<>();
+                        List<String> Vuelos4 = new ArrayList<>();
 
-                    marco.setLocationRelativeTo(null);
-                    marco.pack();
-                    panel10.add(panel11, BorderLayout.EAST);
-                    panel10.add(panel12, BorderLayout.WEST);
-                    marco.add(panel10, BorderLayout.SOUTH);
+                        Vuelos.add(ApoyoPuntoVenta.Opcion5(origen, destino));
+                        Vuelos2.add(ApoyoPuntoVenta.Opcion6(origen, destino));
+                        Vuelos3.add(ApoyoPuntoVenta.Opcion5(destino, origen));
+                        Vuelos4.add(ApoyoPuntoVenta.Opcion6(destino, origen));
 
-                    List<Integer> Prueba = new ArrayList<>();
-                    Prueba.add(ApoyoPuntoVenta.Opcion5(origen, destino));
+                        ButtonGroup grupoBotones = new ButtonGroup();
 
-                    ButtonGroup grupoBotones;
-                    grupoBotones = new ButtonGroup();
-
-                    for (Integer elemento : Prueba) {
-                        JRadioButton radioButton = new JRadioButton(String.valueOf(elemento));
-                        radioButton.setActionCommand(String.valueOf(elemento));
+                        JRadioButton radioButton = new JRadioButton(String.valueOf(Vuelos.getFirst()));
+                        radioButton.setActionCommand(String.valueOf(Vuelos.getFirst()));
                         grupoBotones.add(radioButton);
                         panel11.add(radioButton);
+
+                        JRadioButton radioButton1 = new JRadioButton(String.valueOf(Vuelos2.getFirst()));
+                        radioButton.setActionCommand(String.valueOf(Vuelos2.getFirst()));
+                        grupoBotones.add(radioButton1);
+                        panel11.add(radioButton1);
+
+                        JRadioButton radioButton2 = new JRadioButton(String.valueOf(Vuelos3.getFirst()));
+                        radioButton.setActionCommand(String.valueOf(Vuelos3.getFirst()));
+                        grupoBotones.add(radioButton2);
+                        panel12.add(radioButton2);
+
+                        JRadioButton radioButton3 = new JRadioButton(String.valueOf(Vuelos4.getFirst()));
+                        radioButton.setActionCommand(String.valueOf(Vuelos4.getFirst()));
+                        grupoBotones.add(radioButton3);
+                        panel12.add(radioButton3);
+
+                        panel11.setLayout(new BoxLayout(panel11, BoxLayout.Y_AXIS));
+                        panel11.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Ida", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+
+                        panel12.setLayout(new BoxLayout(panel12, BoxLayout.Y_AXIS));
+                        panel12.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Vuelta", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+
+
+                        panel10.add(panel11, BorderLayout.EAST);
+                        panel10.add(panel12, BorderLayout.WEST);
+                        marco.add(panel10, BorderLayout.SOUTH);
+                        marco.setLocationRelativeTo(null);
+                        marco.pack();
+
+                    } else {
+
+                        // Segunda Parte
+
+                        panel10.removeAll();
+                        panel11.removeAll();
+                        panel12.removeAll();
+
+
+                        JLabel titulo2 = new JLabel("LOS VUELOS DISPONIBLES SON: ");
+                        titulo2.setFont(new Font("Arial", Font.BOLD, 15));
+                        panel10.add(titulo2, BorderLayout.NORTH);
+
+
+                        List<String> Vuelos = new ArrayList<>();
+                        List<String> Vuelos2 = new ArrayList<>();
+
+                        Vuelos.add(ApoyoPuntoVenta.Opcion5(origen, destino));
+                        Vuelos2.add(ApoyoPuntoVenta.Opcion6(origen, destino));
+
+                        ButtonGroup grupoBotones = new ButtonGroup();
+
+                        JRadioButton radioButton = new JRadioButton(String.valueOf(Vuelos.getFirst()));
+                        radioButton.setActionCommand(String.valueOf(Vuelos.getFirst()));
+                        grupoBotones.add(radioButton);
+                        panel11.add(radioButton);
+
+                        JRadioButton radioButton1 = new JRadioButton(String.valueOf(Vuelos2.getFirst()));
+                        radioButton.setActionCommand(String.valueOf(Vuelos2.getFirst()));
+                        grupoBotones.add(radioButton1);
+                        panel11.add(radioButton1);
+
+                        panel11.setLayout(new BoxLayout(panel11, BoxLayout.Y_AXIS));
+                        panel11.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Ida", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+
+
+                        panel10.add(panel11, BorderLayout.EAST);
+                        marco.add(panel10, BorderLayout.SOUTH);
+                        marco.setLocationRelativeTo(null);
+                        marco.pack();
                     }
-
-                    System.out.println(Prueba);
-
-
 
 
 

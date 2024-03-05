@@ -6,6 +6,8 @@ public class ApoyoPuntoVenta {
 
 
     public static final Scanner scanner = new Scanner(System.in);
+    public static HashMap<String, String> IATAdic = new HashMap<>();
+    public static HashMap<String, List<List<String>>> agrupacion = new HashMap<>();
 
     public static String Opcion1(String[] args) {
 
@@ -124,9 +126,9 @@ public class ApoyoPuntoVenta {
         String precioFormateado = String.format("%.2f", numero);
         return precioFormateado;
     }
-    public static int Opcion5(String origen, String destino){
+    public static String Opcion5(String origen, String destino){
 
-        HashMap<String, String> IATAdic = new HashMap<>();
+
 
         IATAdic.put("Alcobendas", "MAD");
         IATAdic.put("Albacete", "ABC");
@@ -147,7 +149,7 @@ public class ApoyoPuntoVenta {
         IATAdic.put("Alcalá del Obispo", "HSK");
         IATAdic.put("San José", "IBZ");
 
-        HashMap<String, List<List<String>>> agrupacion = new HashMap<>();
+
 
 
 
@@ -460,8 +462,7 @@ public class ApoyoPuntoVenta {
         List<String>[] FUE = new List[]{vuelo1FUE,vuelo2FUE,vuelo3FUE,vuelo4FUE,vuelo5FUE,vuelo6FUE,vuelo7FUE,vuelo8FUE,vuelo9FUE,vuelo10FUE,vuelo11FUE,vuelo12FUE,vuelo13FUE,vuelo14FUE,vuelo15FUE,vuelo16FUE,vuelo17FUE};
         agrupacion.put("FUE", List.of(FUE));
 
-
-        // Aeropuerto de Culledero (LCG)
+        // Aeropuerto de Culleredo (LCG)
         List<String> vuelo1LCG = new ArrayList<>(); vuelo1LCG.add("MAD"); vuelo1LCG.add("08:00"); vuelo1LCG.add("10:30"); vuelo1LCG.add("120");
         List<String> vuelo2LCG = new ArrayList<>(); vuelo2LCG.add("ABC"); vuelo2LCG.add("09:15"); vuelo2LCG.add("11:45"); vuelo2LCG.add("110");
         List<String> vuelo3LCG = new ArrayList<>(); vuelo3LCG.add("ALC"); vuelo3LCG.add("10:30"); vuelo3LCG.add("13:15"); vuelo3LCG.add("95");
@@ -558,12 +559,51 @@ public class ApoyoPuntoVenta {
             }
         } else {
             System.out.println("No hay vuelos disponibles");
-            return 0;
+
         }
-        System.out.println(origen + "(" + origen_dicc + ") --> " + destino + "(" + destino_dicc + ") " + salida1 + " " + llegada1 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
-        System.out.println(origen + "(" + origen_dicc + ") --> " + destino + "(" + destino_dicc + ") " + salida2 + " " + llegada2 + " Precio: " + apoyoPuntoVenta.preciorandom() + "€");
-        return 0;
+
+        String nose = ( origen_dicc + "-" + destino_dicc + " " + salida1 + " " + llegada1 + " " + apoyoPuntoVenta.preciorandom() + "€");
+        String nose2 = (origen_dicc + "-" + destino_dicc + " " + salida2 + " " + llegada2 + " " + apoyoPuntoVenta.preciorandom() + "€");
+
+        return nose;
+    }
+    public static String Opcion6 (String origen, String destino){
+
+        ApoyoPuntoVenta apoyoPuntoVenta = new ApoyoPuntoVenta();
+        String origen_dicc = IATAdic.get(origen);
+        String destino_dicc = IATAdic.get(destino);
+        LocalTime salida1 = null;
+        LocalTime llegada1 = null;
+        LocalTime salida2 = null;
+        LocalTime llegada2  = null;
+        if (agrupacion.containsKey(origen_dicc)){
+            for (List<String> vuelo : agrupacion.get(origen_dicc)){
+                int numero = vuelo.indexOf(destino_dicc);
+                for (String vuelo2 : vuelo){
+                    for (int i = 0; i == numero; i++){
+                        int duracion = Integer.parseInt(vuelo.get(3));
+                        //vuelo 1
+                        salida1 = LocalTime.parse(vuelo.get(1));
+                        llegada1 = salida1.plusMinutes(duracion);
+                        //vuelo 2
+                        salida2 = LocalTime.parse(vuelo.get(2));
+                        llegada2 = salida2.plusMinutes(duracion);
+
+                    }
+                }
+
+            }
+        } else {
+            System.out.println("No hay vuelos disponibles");
+
+        }
+
+        String nose = ( origen_dicc + "-" + destino_dicc + " " + salida1 + " " + llegada1 + " " + apoyoPuntoVenta.preciorandom() + "€");
+
+        return (origen_dicc + "-" + destino_dicc + " " + salida2 + " " + llegada2 + " " + apoyoPuntoVenta.preciorandom() + "€");
+    }
     }
 
-}
+
+
 
