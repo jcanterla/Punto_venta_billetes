@@ -334,7 +334,7 @@ public class interfazsegundaparte {
                     panel12.add(radioButton3);
 
                     panel11.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Ida", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
-
+                    panel11.setLayout(new BoxLayout(panel11, BoxLayout.Y_AXIS));
                     panel12.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Vuelta", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
                     panel12.setLayout(new BoxLayout(panel12, BoxLayout.Y_AXIS));
 
@@ -378,14 +378,6 @@ public class interfazsegundaparte {
                             panel2.add(etiqueta, BorderLayout.NORTH);
                             panel2.add(slider, BorderLayout.CENTER);
 
-                            slider.addChangeListener(new ChangeListener() {
-                                @Override
-                                public void stateChanged(ChangeEvent e) {
-                                    etiqueta.setText("Filas: " + slider.getValue());
-                                }
-                            });
-                            // Colocar texto inicial con el valor del JSlider
-                            etiqueta.setText("Filas: " + slider.getValue());
 
                             // Panel 3
                             // Agregar JRadioButton al panel 3
@@ -462,6 +454,18 @@ public class interfazsegundaparte {
                             // Panel 6
                             JLabel imagen = new JLabel();
                             ImageIcon icono4 = new ImageIcon("src/ico_bill_av_iv.png");
+
+                            slider.addChangeListener(new ChangeListener() {
+                                @Override
+                                public void stateChanged(ChangeEvent e) {
+                                    etiqueta.setText("Filas: " + slider.getValue());
+                                    int valorSlider = slider.getValue();
+                                    double precio = calcularPrecio(valorSlider);
+                                    DecimalFormat formato = new DecimalFormat("#0.00€"); // Formato con dos decimales y símbolo de euro
+                                    campo1.setText(formato.format(precio));
+                                    calcularPrecioFinal(campo1, campo2, campo3, campo4); // Calculamos la suma final cada vez que cambia el slider
+                                }
+                            });
 
                             boton4.addActionListener(new ActionListener() {
                                 @Override
@@ -667,14 +671,6 @@ public class interfazsegundaparte {
                             panel2.add(etiqueta, BorderLayout.NORTH);
                             panel2.add(slider, BorderLayout.CENTER);
 
-                            slider.addChangeListener(new ChangeListener() {
-                                @Override
-                                public void stateChanged(ChangeEvent e) {
-                                    etiqueta.setText("Filas: " + slider.getValue());
-                                }
-                            });
-                            // Colocar texto inicial con el valor del JSlider
-                            etiqueta.setText("Filas: " + slider.getValue());
 
                             // Panel 3
                             // Agregar JRadioButton al panel 3
@@ -752,6 +748,17 @@ public class interfazsegundaparte {
                             JLabel imagen = new JLabel();
                             ImageIcon icono3 = new ImageIcon("src/ico_bill_av_ida.png");
 
+                            slider.addChangeListener(new ChangeListener() {
+                                @Override
+                                public void stateChanged(ChangeEvent e) {
+                                    etiqueta.setText("Filas: " + slider.getValue());
+                                    int valorSlider = slider.getValue();
+                                    double precio = calcularPrecio(valorSlider);
+                                    DecimalFormat formato = new DecimalFormat("#0.00€"); // Formato con dos decimales y símbolo de euro
+                                    campo1.setText(formato.format(precio));
+                                    calcularPrecioFinal(campo1, campo2, campo3, campo4); // Calculamos la suma final cada vez que cambia el slider
+                                }
+                            });
 
                             boton4.addActionListener(new ActionListener() {
                                 @Override
