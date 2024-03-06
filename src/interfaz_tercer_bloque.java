@@ -46,6 +46,17 @@ public class interfaz_tercer_bloque {
         panel2.add(etiqueta, BorderLayout.NORTH);
         panel2.add(slider, BorderLayout.CENTER);
 
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                etiqueta.setText("Filas: " + slider.getValue());
+            }
+        });
+        panel2.add(etiqueta);
+        panel2.add(slider);
+        // Colocar texto inicial con el valor del JSlider
+        etiqueta.setText("Filas: " + slider.getValue());
+
         // Panel 3
         // Agregar JRadioButton al panel 3
         JRadioButton boton1 = new JRadioButton("Pasillo");

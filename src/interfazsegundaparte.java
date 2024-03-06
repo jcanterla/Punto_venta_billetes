@@ -3,6 +3,8 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
@@ -376,6 +378,15 @@ public class interfazsegundaparte {
                             panel2.add(etiqueta, BorderLayout.NORTH);
                             panel2.add(slider, BorderLayout.CENTER);
 
+                            slider.addChangeListener(new ChangeListener() {
+                                @Override
+                                public void stateChanged(ChangeEvent e) {
+                                    etiqueta.setText("Filas: " + slider.getValue());
+                                }
+                            });
+                            // Colocar texto inicial con el valor del JSlider
+                            etiqueta.setText("Filas: " + slider.getValue());
+
                             // Panel 3
                             // Agregar JRadioButton al panel 3
                             JRadioButton boton1 = new JRadioButton("Pasillo");
@@ -655,6 +666,15 @@ public class interfazsegundaparte {
                             panel2.setLayout(new BorderLayout());
                             panel2.add(etiqueta, BorderLayout.NORTH);
                             panel2.add(slider, BorderLayout.CENTER);
+
+                            slider.addChangeListener(new ChangeListener() {
+                                @Override
+                                public void stateChanged(ChangeEvent e) {
+                                    etiqueta.setText("Filas: " + slider.getValue());
+                                }
+                            });
+                            // Colocar texto inicial con el valor del JSlider
+                            etiqueta.setText("Filas: " + slider.getValue());
 
                             // Panel 3
                             // Agregar JRadioButton al panel 3
