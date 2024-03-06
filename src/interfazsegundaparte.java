@@ -450,8 +450,18 @@ public class interfazsegundaparte {
 
                             // Panel 6
                             JLabel imagen = new JLabel();
-                            ImageIcon icono3 = new ImageIcon("src/ico_bill_av_ida.png");
                             ImageIcon icono4 = new ImageIcon("src/ico_bill_av_iv.png");
+
+                            boton4.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    JOptionPane.showMessageDialog(null, "Ya puedes retirar tu billete", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                                    imagen.setIcon(icono4);
+                                    panel6.add(imagen);
+                                    panel6.revalidate();
+                                    panel6.repaint();
+                                }
+                            });
 
 
                             check1.addActionListener(new ActionListener() {
@@ -719,9 +729,18 @@ public class interfazsegundaparte {
                             // Panel 6
                             JLabel imagen = new JLabel();
                             ImageIcon icono3 = new ImageIcon("src/ico_bill_av_ida.png");
-                            ImageIcon icono4 = new ImageIcon("src/ico_bill_av_iv.png");
 
 
+                            boton4.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    JOptionPane.showMessageDialog(null, "Ya puedes retirar tu billete", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                                    imagen.setIcon(icono3);
+                                    panel6.add(imagen);
+                                    panel6.revalidate();
+                                    panel6.repaint();
+                                }
+                            });
                             check1.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent e) {
@@ -872,4 +891,5 @@ public class interfazsegundaparte {
         marco.setVisible(true);
         marco.setLocationRelativeTo(null);
     }
+
 }
