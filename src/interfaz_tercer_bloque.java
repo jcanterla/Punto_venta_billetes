@@ -12,10 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class interfaz_tercer_bloque {
-    public static void main(String[] args) {
+    public interfaz_tercer_bloque() {
         // Crear marco principal
-        JFrame marco = new JFrame("Air Camela");
-
+        JFrame marco = new JFrame("Interfaz Tercer Bloque");
         // Crear paneles
         JPanel panelTercero = new JPanel();
         JPanel panel1 = new JPanel();
@@ -119,19 +118,10 @@ public class interfaz_tercer_bloque {
         panel5_2.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         panel5.add(panel5_2, BorderLayout.EAST);
 
-        // Movimiento del slider
-        slider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                etiqueta.setText("Filas: " + slider.getValue());
-                int valorSlider = slider.getValue();
-                double precio = calcularPrecio(valorSlider);
-                DecimalFormat formato = new DecimalFormat("#0.00€"); // Formato con dos decimales y símbolo de euro
-                campo1.setText(formato.format(precio));
-                calcularPrecioFinal(campo1, campo2, campo3, campo4); // Calculamos la suma final cada vez que cambia el slider
-            }
-        });
-
+        // Panel 6
+        JLabel imagen = new JLabel();
+        ImageIcon icono3 = new ImageIcon("src/ico_bill_av_ida.png");
+        ImageIcon icono4 = new ImageIcon("src/ico_bill_av_iv.png");
 
 
         check1.addActionListener(new ActionListener() {
@@ -179,16 +169,6 @@ public class interfaz_tercer_bloque {
             }
         });
 
-
-
-        // Panel 6
-        JLabel imagen = new JLabel();
-        ImageIcon icono3 = new ImageIcon("src/ico_bill_av_ida.png");
-        ImageIcon icono4 = new ImageIcon("src/ico_bill_av_iv.png");
-        imagen.setIcon(icono3);
-        panel6.add(imagen);
-
-
         // Panel 7
         panel7.setLayout(new BorderLayout());
         panel7.add(panel5, BorderLayout.NORTH);
@@ -208,14 +188,13 @@ public class interfaz_tercer_bloque {
         // Agregar los paneles al marco principal con un BorderLayout
         panelTercero.add(panel1, BorderLayout.WEST);
         panelTercero.add(panel7, BorderLayout.CENTER);
-        marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Visiblidad y tamaño del marco principal
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
         marco.add(panelTercero);
         marco.pack();
         marco.setVisible(true);
-        marco.setResizable(false);
-        marco.setLocationRelativeTo(null);
+
+
     }
 
     private static double calcularPrecio(int filas) {
