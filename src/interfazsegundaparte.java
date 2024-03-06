@@ -611,9 +611,11 @@ public class interfazsegundaparte {
 
                     panel11.setLayout(new BoxLayout(panel11, BoxLayout.Y_AXIS));
                     panel11.setBorder(new TitledBorder(new LineBorder(Color.BLUE), "Ida", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 12)));
+                    JPanel panelOrden = new JPanel();
+                    panelOrden.add(panel11);
 
                     if (mostrarTitulo2[0]) {
-                        panel10.add(panel11, BorderLayout.CENTER);
+                        panel10.add(panelOrden, BorderLayout.CENTER);
                         marco.add(panel10, BorderLayout.CENTER);
                         marco.setLocationRelativeTo(null);
                     }
@@ -846,7 +848,7 @@ public class interfazsegundaparte {
 
                     });
 
-                    panel10.add(panel11, BorderLayout.EAST);
+
                     marco.add(panel10, BorderLayout.CENTER);
                     marco.setLocationRelativeTo(null);
                     marco.pack();
